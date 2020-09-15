@@ -1,2 +1,27 @@
-.Login {
+.FormLabel {
+  color: #fff;
+}
+.EmailError {
+  border: 2px solid red;
+}
+.FormBottomLinkWrapper {
+  .SignUpLinkWrapper {
+    margin: auto;
+    .SignUpLink {
+      font-size: 15px;
+      color: white;
+      :hover {
+        color: white;
+      }
+    }
+  }
+  .FormButtonWrapper {
+    text-align: right;
+    .FormButton {
+      border-radius: 15px;
+    }
+  }
+}
+.NoPadding {
+  padding: 0;
 }

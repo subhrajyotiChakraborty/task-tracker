@@ -1,0 +1,54 @@
+.AuthFormWrapper {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(54, 64, 179, 1) 0%,
+    rgba(48, 189, 174, 1) 79%
+  );
+  .AppLogo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+  }
+  .PanelForm {
+    margin: auto;
+    .FormWrapper {
+      padding: 0px 60px;
+      .FormLabel {
+        color: #fff;
+      }
+      .FormBottomLinkWrapper {
+        .SignUpLinkWrapper {
+          margin: auto;
+          .SignUpLink {
+            font-size: 15px;
+            color: white;
+            :hover {
+              color: white;
+            }
+          }
+        }
+        .FormButtonWrapper {
+          text-align: right;
+          .FormButton {
+            border-radius: 15px;
+          }
+        }
+      }
+    }
+  }
+  .PanelBg {
+    background-image: url("../../assets/images/panel-img.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+}
+.NoPadding {
+  padding: 0;
+}

@@ -1,2 +1,24 @@
-.Signup {
+.FormLabel {
+  color: #fff;
+}
+.FormBottomLinkWrapper {
+  .LoginLinkWrapper {
+    margin: auto;
+    .LoginLink {
+      font-size: 15px;
+      color: white;
+      :hover {
+        color: white;
+      }
+    }
+  }
+  .FormButtonWrapper {
+    text-align: right;
+    .FormButton {
+      border-radius: 15px;
+    }
+  }
+}
+.NoPadding {
+  padding: 0;
 }
