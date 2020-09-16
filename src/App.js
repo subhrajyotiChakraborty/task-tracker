@@ -2,12 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+
 import classes from "./App.module.scss";
 import Login from "./containers/Auth/Login/Login";
 import Register from "./containers/Auth/Register/Register";
 import Dashboard from "./containers/Dashboard/Dashboard";
 import NotFound from "./components/404/NotFound";
 import Home from "./components/Home/Home";
+import * as actions from "./store/actions";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +20,7 @@ class App extends React.Component {
   render() {
     return (
       <div className={classes.App}>
+        <ToastContainer />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
@@ -37,10 +41,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
 
 export default connect(mapStateToProps, null)(App);

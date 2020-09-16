@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
 
 import AuthFormWrapper from "../../../components/AuthFormWrapper/AuthFormWrapper";
-import { checkEmailValidation } from "../../../utils/utils";
+import { checkEmailValidation, showToast } from "../../../utils/utils";
+import * as CONSTANTS from "../../../utils/constant";
 import classes from "./Login.module.scss";
 
 class Login extends Component {
@@ -21,28 +21,27 @@ class Login extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    // this.props.history.push("/dashboard");
-    console.log(this.state);
-    // toast.error("Hi", {
-    //   onOpen: (props) => console.log(props.foo),
-    //   onClose: (props) => console.log(props.foo),
-    //   autoClose: 6000,
-    //   type: toast.TYPE.ERROR,
-    //   hideProgressBar: false,
-    //   position: toast.POSITION.TOP_LEFT,
-    //   pauseOnHover: true,
-    //   progress: 0.2,
-    // });
+
+    if (!this.state.password.length && !this.state.email.length) {
+      showToast(false, CONSTANTS.EMAIL_PASSWORD_REQUIRED_ERROR);
+    } else if (!this.state.password.length || !this.state.email.length) {
+      showToast(false, CONSTANTS.EMAIL_PASSWORD_REQUIRED_ERROR);
+    } else if (
+      this.state.password.length &&
+      this.state.email.length &&
+      !checkEmailValidation(this.state.email)
+    ) {
+      showToast(false, CONSTANTS.NOT_VALID_EMAIL_ERROR);
+    } else {
+      // Perform async task
+      console.log(this.state);
+      this.props.history.push("/dashboard");
+    }
   };
 
   handleInputChange = (event, type) => {
-    console.log(checkEmailValidation(event.target.value.trim()));
     this.setState({
       [type]: event.target.value.trim(),
-      emailError:
-        type === "email"
-          ? !checkEmailValidation(event.target.value.trim())
-          : this.state.emailError,
     });
   };
 
@@ -55,11 +54,7 @@ class Login extends Component {
             <Form.Control
               type="email"
               placeholder="Enter your email"
-              className={
-                this.state.emailError && this.state.email.length
-                  ? classes.EmailError
-                  : null
-              }
+              value={this.state.email}
               onChange={(event) => this.handleInputChange(event, "email")}
             />
             {/* <Form.Text className="text-muted">Show some error</Form.Text> */}
@@ -70,6 +65,7 @@ class Login extends Component {
             <Form.Control
               type="password"
               placeholder="Password"
+              value={this.state.password}
               onChange={(event) => this.handleInputChange(event, "password")}
             />
           </Form.Group>
@@ -91,7 +87,6 @@ class Login extends Component {
                     >
                       Login
                     </Button>
-                    {/* <ToastContainer /> */}
                   </div>
                 </Col>
               </Row>
